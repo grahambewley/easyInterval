@@ -123,10 +123,6 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
                         <span className={classes.NextIntervalDuration}>{getVerboseTime(intervals[currentIntervalIndex + 1].duration)}</span>
                         </> : null}
                     </div>
-                    <div className={classes.TotalTimeLeft}>
-                        <span className={classes.TotalTimeLeftLabel}>Total Time Left:</span>
-                        <span className={classes.TotalTimeLeftTime}>0:00</span>
-                    </div>
                 </div>
             </div>
             : null }
