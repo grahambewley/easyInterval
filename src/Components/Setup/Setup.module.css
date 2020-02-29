@@ -1,0 +1,145 @@
+.Container {
+    align-self: center;
+    justify-self: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content min-content;
+    grid-gap: 4rem;
+
+}
+
+.IntensitySelector {
+    
+}
+.IntensityOption {
+    padding: 1rem 2rem 1rem 1rem;
+    border-radius: 4px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,.07);
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all .3s;
+}
+.IntensityOption:not(:last-child) {
+    margin-bottom: 2rem;
+}
+.IntensityOption:hover {
+    transform: translate3d(0,-2px,0);
+    box-shadow: 0 3px 6px rgba(0,0,0,.07); 
+}
+.IntensityOption:active {
+    transform: translate3d(0,0,0);
+    box-shadow: 0 2px 4px rgba(0,0,0,.07);
+}
+.IntensityOption.Selected {
+    border: 2px solid #b1c8e1;
+}
+
+.IntensityColorblock {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 4px;
+    margin-right: 1.5rem;
+}
+.IntensityName {
+    font-size: 1.6rem;
+}
+
+.TimeSelector {
+    
+}
+.TimeOption {
+    padding: 1rem 2rem 1rem 1rem;
+    border-radius: 4px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,.07);
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all .3s;
+}
+.TimeOption:not(:last-child) {
+    margin-bottom: 1rem;
+}
+.TimeOption:hover {
+    transform: translate3d(0,-2px,0);
+    box-shadow: 0 3px 6px rgba(0,0,0,.07); 
+}
+.TimeOption:active {
+    transform: translate3d(0,0,0);
+    box-shadow: 0 2px 4px rgba(0,0,0,.07);
+}
+.TimeOption.Selected {
+    border: 2px solid #b1c8e1;
+}
+.TimeName {
+    font-size: 1.6rem;
+}
+
+.ActionContainer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-rows: min-content 1fr 2fr;
+    grid-gap: 2rem;
+}
+.ActionTopRow {
+    display: flex;
+    justify-content: flex-end;
+}
+.MiniActionButton {
+    font-size: 1.6rem;
+    padding: .8rem;
+    /* height: 3rem;
+    width: 3rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    background-color: var(--color-blue);
+    color: white;
+    border: 1px solid rgba(0,0,0,.1);
+    cursor: pointer;
+}
+.ActionButton {
+    border: none;
+    padding: 1rem 0;
+    font-size: 2rem;
+    border-radius: 8px;
+    background-color: #dddde3;
+    
+    /* box-shadow: 0 2px 4px rgba(0,0,0,.12); */
+    transition: all .2s;
+    cursor: pointer;
+}
+.ActionButton:hover {
+    transform: translate3d(0,-2px,0);
+    /* box-shadow: 0 3px 6px rgba(0,0,0,.12); */
+}
+.ActionButton:active {
+    transform: translate3d(0,0,0);
+    /* box-shadow: 0 2px 4px rgba(0,0,0,.12); */
+}
+.ActionButton.Add {
+    grid-column: 1 / -1;
+    color: white;
+
+    background-color: #6290c3;
+}
+.ActionButton.Start {
+    grid-column: 1 / -1;
+    background-color: #21D19F;
+    color: rgba(255,255,255,.9);
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+@media(max-width: 900px) {
+    .Container {
+        grid-gap: 2rem;
+    }
+}

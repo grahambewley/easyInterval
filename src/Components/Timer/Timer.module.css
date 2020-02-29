@@ -1,0 +1,159 @@
+:root {
+    --font-size-tiny: 1.6vw;
+    --font-size-small: 2vw;
+    --font-size-medium: 3.6vw;
+    --font-size-large: 5vw;
+    --font-size-xl: 12vw;
+    --font-size-gigantic: 18vw;
+}
+
+.Container {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+}
+/**** ACTION BAR ****/
+.ActionButton {
+    border: none;
+    padding: .75rem 1.5rem;
+    font-size: var(--font-size-tiny);
+    border-radius: 8px;
+    background-color: rgba(255,255,255,.5);
+    color: rgba(0,0,0,.75);
+    /* box-shadow: 0 2px 4px rgba(0,0,0,.12); */
+    transition: all .2s;
+    cursor: pointer;
+}
+/***** PRE START *****/
+.PreStartContainer {
+    align-self: center;
+    justify-self: center;
+}
+.PreStartHeader {
+    font-size: var(--font-size-xl);
+    color: rgba(0,0,0,.7);
+    margin-bottom: 4rem;
+}
+.PreStartDetail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.FirstIntervalLabel {
+    display: block;
+    font-size: var(--font-size-small);
+    line-height: 1;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.7);
+    margin-bottom: 1rem;
+}
+.FirstIntervalName {
+    display: block;
+    font-size: var(--font-size-medium);
+    line-height: 1;
+    font-weight: 900;
+    color: rgba(0,0,0,.7);
+    margin-bottom: 1rem;
+}
+.FirstIntervalDuration {
+    display: block;
+    font-size: var(--font-size-small);
+    line-height: 1;
+    color: rgba(0,0,0,.7);
+    margin-bottom: 4rem;
+}
+.BigStartButton {
+    font-size: var(--font-size-medium);
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgba(0,0,0,.7);
+    padding: 1rem 3rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255,255,255,.2);
+    background-color: rgba(255,255,255,.5);
+    cursor: pointer;
+}
+
+/***** MAIN TIMER SECTION *****/
+.MainTimerSection {
+    align-self: center;
+    justify-self: center;
+}
+
+/***** CURRENT INTERVAL INFO *****/
+.CurrentInterval {
+    padding: 0 1rem;
+}
+.CurrentIntervalLabel {
+    display: block;
+    font-size: var(--font-size-small);
+    line-height: 1;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.7);
+}
+.CurrentIntervalName {
+    display: block;
+    font-size: var(--font-size-large);
+    line-height: 1;
+    font-weight: 900;
+    color: rgba(0,0,0,.7);
+}
+
+/***** BIG TIMER SECTION *****/
+.IntervalTimeLeft {
+
+}
+.IntervalTimeLeftTime {
+    font-size: var(--font-size-gigantic);
+    font-family: 'Source Code Pro', monospace;
+    line-height: 1;
+    color: rgba(0,0,0,.7);
+}
+
+/***** BOTTOM DETAIL SECTION *****/
+.BottomRow {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.NextInterval {
+
+}
+.NextIntervalLabel {
+    display: block;
+    font-size: var(--font-size-tiny);
+    text-transform: uppercase;
+    color: rgba(0,0,0,.5);
+    margin-bottom: .5rem;
+}
+.NextIntervalName {
+    display: block;
+    font-size: var(--font-size-small);
+    margin-bottom: .5rem;
+    line-height: 1;
+    font-weight: 900;
+    color: rgba(0,0,0,.5);
+}
+.NextIntervalDuration {
+    font-size: var(--font-size-tiny);
+    line-height: 1;
+    color: rgba(0,0,0,.5);
+}
+.TotalTimeLeft {
+
+}
+.TotalTimeLeftLabel {
+
+}
+.TotalTimeLeftTime {
+
+}
+
+.Finished {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    font-size: var(--font-size-xl);
+    color: rgba(0,0,0,.5);
+    font-weight: bold;
+}

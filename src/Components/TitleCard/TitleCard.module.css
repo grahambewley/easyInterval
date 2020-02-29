@@ -1,0 +1,39 @@
+.Container {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all .5s;
+}
+.Main {
+  text-align: center;
+  font-weight: 800;
+  font-size: 12vw;
+  letter-spacing: .25vw;
+  color: var(--color-blue);
+}
+.Subhead {
+  font-weight: 600;
+  font-size: 4vw;
+  text-align: center;
+  color: var(--color-blue);
+  margin-bottom: 6rem;
+}
+.GetStarted {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 4vw;
+  padding: 2rem 3rem;
+  background-color: var(--color-blue);
+  color: white;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
