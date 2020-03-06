@@ -27,7 +27,7 @@
 @media(max-width: 600px) {
   :root {
     --font-size-tiny: 2.4vw;
-    --font-size-small: 3vw;
+    --font-size-small: 4vw;
     --font-size-medium: 5.4vw;
     --font-size-large: 7.5vw;
     --font-size-xl: 18vw;

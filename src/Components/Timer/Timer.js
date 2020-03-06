@@ -1,9 +1,6 @@
 import React from 'react';
 import classes from './Timer.module.css';
 import { useTimer } from 'use-timer';
-import NoSleep from 'nosleep.js';
-
-var noSleep = new NoSleep();
 
 const Timer = ({ intervals, goBack, setBgColor }) => {
     
@@ -40,21 +37,6 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
     }, [time]);
 
     React.useEffect(() => {
-        if(started) {
-            console.log("Enabling wake lock");
-            // Enable wake lock.
-            // (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-            document.addEventListener('click', function enableNoSleep() {
-                document.removeEventListener('click', enableNoSleep, false);
-                noSleep.enable();
-            }, false);
-        } else {
-            console.log("Disabling wake lock");
-            noSleep.disable();
-        }
-    }, [started])
-
-    React.useEffect(() => {
         if(intervals) {
             setBgColor(intervals[currentIntervalIndex].intensity.color);
         }
@@ -62,8 +44,6 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
 
     function handleBackButtonClick() {
         setStarted(false);
-        console.log("Disabling wake lock");
-        noSleep.disable();
         reset();
         goBack();
     }

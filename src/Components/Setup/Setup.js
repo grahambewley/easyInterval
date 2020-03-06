@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUndo, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUndo, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import classes from './Setup.module.css';
 
 const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready, setBgColor }) => {

@@ -4,6 +4,15 @@ import Setup from './Components/Setup/Setup';
 import Timer from './Components/Timer/Timer';
 import Timeline from './Components/Timeline/Timeline';
 import classes from './App.module.css';
+import NoSleep from 'nosleep.js';
+
+var noSleep = new NoSleep();
+// Enable wake lock.
+// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+document.addEventListener('click', function enableNoSleep() {
+    document.removeEventListener('click', enableNoSleep, false);
+    noSleep.enable();
+}, false);
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
