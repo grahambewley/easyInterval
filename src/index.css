@@ -26,10 +26,10 @@
 
 @media(max-width: 600px) {
   :root {
-    --font-size-tiny: 2.4vw;
-    --font-size-small: 4vw;
-    --font-size-medium: 5.4vw;
-    --font-size-large: 7.5vw;
+    --font-size-tiny: 3.5vw;
+    --font-size-small: 5vw;
+    --font-size-medium: 6.4vw;
+    --font-size-large: 8vw;
     --font-size-xl: 18vw;
     --font-size-gigantic: 27vw;
   }

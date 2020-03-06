@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './Timer.module.css';
 import { useTimer } from 'use-timer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Timer = ({ intervals, goBack, setBgColor }) => {
     
@@ -87,7 +89,9 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
                 <div className={classes.ActionBarLeft}>
                     <button 
                         className={classes.ActionButton}
-                        onClick={handleBackButtonClick}>&larr; Back to Setup</button>
+                        onClick={handleBackButtonClick}>
+                            <FontAwesomeIcon icon={faArrowLeft} style={{marginRight: '8px'}}/>
+                            Back to Setup</button>
                 </div>
                 <div className={classes.ActionBarRight}>
 
