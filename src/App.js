@@ -4,15 +4,6 @@ import Setup from './Components/Setup/Setup';
 import Timer from './Components/Timer/Timer';
 import Timeline from './Components/Timeline/Timeline';
 import classes from './App.module.css';
-import NoSleep from 'nosleep.js';
-
-var noSleep = new NoSleep();
-// Enable wake lock.
-// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-document.addEventListener('click', function enableNoSleep() {
-  document.removeEventListener('click', enableNoSleep, false);
-  noSleep.enable();
-}, false);
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
@@ -47,31 +38,11 @@ const INIT_INTENSITY_OPTIONS = [
    // Alternative green: #55D6BE
 ];
 
-const INIT_TIME_OPTIONS = [30, 60, 120, 180, 300, 600, 900];
-
-// const tempSetIntervals = [
-//   {
-//     intensity: {
-//       name: 'Low intensity',
-//       color: '#6CC551' // green
-//     },
-//     duration: 120
-//   },
-//   {
-//     intensity: {
-//       name: 'Medium intensity',
-//       color: '#FFCF56' // green
-//     },
-//     duration: 300
-//   }
-// ];
-
 function App() {
   const [showTitleCard, setShowTitleCard] = React.useState(true);
   const [showSetup, setShowSetup] = React.useState(false);
   const [bgColor, setBgColor] = React.useState('#eff4f9')
   const [intensityOptions, setIntensityOptions] = React.useState(INIT_INTENSITY_OPTIONS)
-  const [timeOptions, setTimeOptions] = React.useState(INIT_TIME_OPTIONS);
   
   const [amountLastAdded, setAmountLastAdded] = React.useState();
   const [intervals, setIntervals] = React.useState();
@@ -157,7 +128,6 @@ function App() {
             
             <Setup 
               intensityOptions={intensityOptions}
-              timeOptions={timeOptions}
               addInterval={handleAddInterval}
               undo={handleUndo}
               repeat={handleRepeat}
