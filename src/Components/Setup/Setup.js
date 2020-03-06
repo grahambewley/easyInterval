@@ -1,27 +1,48 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUndo } from '@fortawesome/free-solid-svg-icons'
+import { faUndo, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import classes from './Setup.module.css';
 
 const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready, setBgColor }) => {
     
     const [selectedIntensity, setSelectedIntensity] = React.useState();
-    const [selectedTime, setSelectedTime] = React.useState();
+    const [selectedDuration, setSelectedDuration] = React.useState(60);
 
     React.useEffect(() => {
         setBgColor('#eff4f9');
     })
 
-    function handleAddInterval() {
-        if(selectedIntensity && selectedTime) {
+    function getDisplayTime(time) {
+        if(time < 60) {
+            return time + ' seconds';
+        } else if(time === 60) {
+            return (time/60) + ' minute';
+        } else {
+            return (time / 60) + ' minutes';
+        }
+    }
 
-            // Blank the selected intensity and time
+    function handleDurationIncrementClick() {
+        if(selectedDuration >= 0) {
+            setSelectedDuration(selectedDuration + 60);
+        }
+    }
+
+    function handleDurationDecrementClick() {
+        if(selectedDuration < 3600) {
+            setSelectedDuration(selectedDuration - 60);
+        }
+    }
+
+    function handleAddInterval() {
+        if(selectedIntensity && selectedDuration) {
+
+            // Blank the selected intensity
             setSelectedIntensity();
-            setSelectedTime();
 
             const newInterval = {
                 intensity: selectedIntensity,
-                duration: selectedTime
+                duration: selectedDuration
             }
             addInterval(newInterval);
         } else {
@@ -31,6 +52,7 @@ const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready
 
     return(
         <div className={classes.Container}>
+            <h2 className={classes.SectionHeader}>Intensity</h2>
             <div className={classes.IntensitySelector}>
                 { intensityOptions.map(opt => {
                     let styleClasses = `${classes.IntensityOption}`;
@@ -48,11 +70,52 @@ const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready
                     )
                 })}
             </div>
-
+            <h2 className={classes.SectionHeader}>Duration</h2>
             <div className={classes.TimeSelector}>
-                { timeOptions.map(opt => {
+                <div className={classes.TimeSelectorIncrementContainer}>
+                    <button 
+                        className={classes.TimeSelectorIncrementButton}
+                        onClick={handleDurationDecrementClick}>
+                        <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                    <div className={classes.TimeSelectorIncrementDisplay}>
+                        { getDisplayTime(selectedDuration) }
+                    </div>
+                    <button 
+                        className={classes.TimeSelectorIncrementButton}
+                        onClick={handleDurationIncrementClick}>
+                        <FontAwesomeIcon icon={faPlus}/>
+                    </button>
+                </div>
+                <div className={classes.TimeSelectorQuickOptionContainer}>
+                    <button 
+                        className={classes.TimeSelectorQuickOptionButton}
+                        onClick={() => setSelectedDuration(60)}
+                        >1 min</button>
+                    <button 
+                        className={classes.TimeSelectorQuickOptionButton}
+                        onClick={() => setSelectedDuration(120)}
+                        >2 min</button>
+                    <button 
+                        className={classes.TimeSelectorQuickOptionButton}
+                        onClick={() => setSelectedDuration(180)}
+                        >3 min</button>
+                    <button 
+                        className={classes.TimeSelectorQuickOptionButton}
+                        onClick={() => setSelectedDuration(300)}
+                        >5 min</button>
+                    <button 
+                        className={classes.TimeSelectorQuickOptionButton}
+                        onClick={() => setSelectedDuration(600)}
+                        >10 min</button>
+                    <button 
+                        className={classes.TimeSelectorQuickOptionButton}
+                        onClick={() => setSelectedDuration(900)}
+                        >15 min</button>
+                </div>
+                {/* { timeOptions.map(opt => {
                     let styleClasses = `${classes.TimeOption}`;
-                    if(selectedTime && selectedTime === opt) {
+                    if(selectedDuration && selectedDuration === opt) {
                         styleClasses += ` ${classes.Selected}`;
                     }
 
@@ -67,11 +130,11 @@ const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready
                     }
 
                     return(
-                        <div key={opt} className={styleClasses} onClick={() => setSelectedTime(opt)}>
+                        <div key={opt} className={styleClasses} onClick={() => setSelectedDuration(opt)}>
                             <span className={classes.TimeName}>{ getDisplayTime(opt) }</span>
                         </div>
                     )
-                })}
+                })} */}
             </div>
 
             <div className={classes.ActionContainer}>
