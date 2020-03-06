@@ -3,8 +3,16 @@ import TitleCard from './Components/TitleCard/TitleCard';
 import Setup from './Components/Setup/Setup';
 import Timer from './Components/Timer/Timer';
 import Timeline from './Components/Timeline/Timeline';
-
 import classes from './App.module.css';
+import NoSleep from 'nosleep.js';
+
+var noSleep = new NoSleep();
+// Enable wake lock.
+// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+document.addEventListener('click', function enableNoSleep() {
+  document.removeEventListener('click', enableNoSleep, false);
+  noSleep.enable();
+}, false);
 
 const INIT_INTENSITY_OPTIONS = [
   {
