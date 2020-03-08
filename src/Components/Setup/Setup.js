@@ -113,28 +113,6 @@ const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready
                         onClick={() => setSelectedDuration(900)}
                         >15 min</button>
                 </div>
-                {/* { timeOptions.map(opt => {
-                    let styleClasses = `${classes.TimeOption}`;
-                    if(selectedDuration && selectedDuration === opt) {
-                        styleClasses += ` ${classes.Selected}`;
-                    }
-
-                    function getDisplayTime(time) {
-                        if(time < 60) {
-                            return time + ' seconds';
-                        } else if(time === 60) {
-                            return (time/60) + ' minute';
-                        } else {
-                            return (time / 60) + ' minutes';
-                        }
-                    }
-
-                    return(
-                        <div key={opt} className={styleClasses} onClick={() => setSelectedDuration(opt)}>
-                            <span className={classes.TimeName}>{ getDisplayTime(opt) }</span>
-                        </div>
-                    )
-                })} */}
             </div>
 
             <div className={classes.ActionContainer}>
@@ -149,16 +127,6 @@ const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready
                     className={`${classes.ActionButton} ${classes.Add}`}
                     onClick={handleAddInterval}>
                     Add</button>
-                {/*
-                <button 
-                    className={`${classes.ActionButton} ${classes.Undo}`}
-                    onClick={undo}>
-                    Undo</button>
-                <button 
-                    className={`${classes.ActionButton} ${classes.Repeat}`}
-                    onClick={repeat}>
-                    Repeat</button>
-                */}
                 <button 
                     className={`${classes.ActionButton} ${classes.Start}`}
                     onClick={ready}>
