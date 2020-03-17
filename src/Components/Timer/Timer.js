@@ -110,8 +110,7 @@ const Timer = ({ intervals, goBack, setBgColor, noSleep, toggleNoSleep }) => {
                                 activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
                                 height={12}
                                 width={32}
-                                className="react-switch"
-                                id="material-switch"/>
+                                />
                         </label>
                     </div>
                 </div>

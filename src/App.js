@@ -39,7 +39,7 @@ const INIT_INTENSITY_OPTIONS = [
    // Alternative green: #55D6BE
 ];
 
-const noSleep = new NoSleep();
+var noSleep = new NoSleep();
 
 function App() {
   const [showTitleCard, setShowTitleCard] = React.useState(true);
@@ -55,6 +55,8 @@ function App() {
   React.useEffect(() => {
     if(noSleepActive) {
       console.log("Enabling wake lock");
+      
+      noSleep = new NoSleep();
       // Enable wake lock.
       // (must be wrapped in a user input event handler e.g. a mouse or touch handler)
       document.addEventListener('click', function enableNoSleep() {
