@@ -39,33 +39,17 @@ const INIT_INTENSITY_OPTIONS = [
    // Alternative green: #55D6BE
 ];
 
-const noSleep = new NoSleep();
+
 
 function App() {
   const [showTitleCard, setShowTitleCard] = React.useState(true);
   const [showSetup, setShowSetup] = React.useState(false);
   const [bgColor, setBgColor] = React.useState('#eff4f9');
   const [intensityOptions] = React.useState(INIT_INTENSITY_OPTIONS);
-  const [noSleepActive, setNoSleepActive] = React.useState(false);
 
   const [amountLastAdded, setAmountLastAdded] = React.useState();
   const [intervals, setIntervals] = React.useState();
   const [repeatingIntervalArray, setRepeatingIntervalArray] = React.useState();
-
-  React.useEffect(() => {
-    if(noSleepActive) {
-      console.log("Enabling wake lock");
-      // Enable wake lock.
-      // (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-      document.addEventListener('click', function enableNoSleep() {
-          document.removeEventListener('click', enableNoSleep, false);
-          noSleep.enable();
-      }, false);
-    } else {
-      console.log('Disabling wake lock');
-      noSleep.disable();
-    }    
-  }, [noSleepActive]);
 
   React.useEffect(() => {
     if(!showTitleCard) {
@@ -129,10 +113,6 @@ function App() {
     }
   }
 
-  function toggleNoSleep() {
-    setNoSleepActive(!noSleepActive);
-  }
-
   return (<>
     <div 
       className={classes.WrapperOuter}
@@ -162,8 +142,6 @@ function App() {
               intervals={intervals}
               goBack={() => setShowSetup(true)}
               setBgColor={setBgColor}
-              noSleep={noSleepActive}
-              toggleNoSleep={toggleNoSleep}
             />
           }
           <Timeline 

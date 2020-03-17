@@ -3,15 +3,34 @@ import classes from './Timer.module.css';
 import { useTimer } from 'use-timer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import NoSleep from 'nosleep.js';
 import Switch from 'react-switch';
 
-const Timer = ({ intervals, goBack, setBgColor, noSleep, toggleNoSleep }) => {
+const noSleep = new NoSleep();
+
+const Timer = ({ intervals, goBack, setBgColor }) => {
     
     const [totalDuration, setTotalDuration] = React.useState();
     const [currentIntervalIndex, setCurrentIntervalIndex] = React.useState(0);
     const [intervalSwitchTimes, setIntervalSwitchTimes] = React.useState([]);
     const [started, setStarted] = React.useState(false);
     const [finished, setFinished] = React.useState(false);
+    const [noSleepActive, setNoSleepActive] = React.useState(false);
+
+    React.useEffect(() => {
+        if(noSleepActive) {
+          console.log("Enabling wake lock");
+          // Enable wake lock.
+          // (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+          document.addEventListener('click', function enableNoSleep() {
+              document.removeEventListener('click', enableNoSleep, false);
+              noSleep.enable();
+          }, false);
+        } else {
+          console.log('Disabling wake lock');
+          noSleep.disable();
+        }    
+    }, [noSleepActive]);
 
     React.useEffect(() => {
         if(intervals) {
@@ -49,6 +68,10 @@ const Timer = ({ intervals, goBack, setBgColor, noSleep, toggleNoSleep }) => {
         setStarted(false);
         reset();
         goBack();
+    }
+
+    function toggleNoSleep() {
+        setNoSleepActive(!noSleepActive);
     }
 
     function handleStartButtonClick() {
@@ -100,7 +123,7 @@ const Timer = ({ intervals, goBack, setBgColor, noSleep, toggleNoSleep }) => {
                             <span>Keep Device Awake</span>
                             <Switch 
                                 onChange={toggleNoSleep} 
-                                checked={noSleep} 
+                                checked={noSleepActive} 
                                 onColor="#6290C3"
                                 onHandleColor="#eff4f9"
                                 handleDiameter={20}
