@@ -3,8 +3,9 @@ import classes from './Timer.module.css';
 import { useTimer } from 'use-timer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Switch from 'react-switch';
 
-const Timer = ({ intervals, goBack, setBgColor }) => {
+const Timer = ({ intervals, goBack, setBgColor, noSleep, toggleNoSleep }) => {
     
     const [totalDuration, setTotalDuration] = React.useState();
     const [currentIntervalIndex, setCurrentIntervalIndex] = React.useState(0);
@@ -31,18 +32,18 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
     React.useEffect(() => {
         if(time === totalDuration) {
             setFinished(true);
-        } else if((intervalSwitchTimes[currentIntervalIndex] - time) == 0) {
+        } else if((intervalSwitchTimes[currentIntervalIndex] - time) === 0) {
             let newIndex = currentIntervalIndex;
             newIndex += 1;
             setCurrentIntervalIndex(newIndex);
         }
-    }, [time]);
+    }, [time, totalDuration, intervalSwitchTimes, currentIntervalIndex]);
 
     React.useEffect(() => {
         if(intervals) {
             setBgColor(intervals[currentIntervalIndex].intensity.color);
         }
-    }, [currentIntervalIndex]);
+    }/*, [currentIntervalIndex] */ );
 
     function handleBackButtonClick() {
         setStarted(false);
@@ -94,7 +95,25 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
                             Back to Setup</button>
                 </div>
                 <div className={classes.ActionBarRight}>
-
+                    <div className={classes.ActionBarToggle}>
+                        <label>
+                            <span>Keep Device Awake</span>
+                            <Switch 
+                                onChange={toggleNoSleep} 
+                                checked={noSleep} 
+                                onColor="#6290C3"
+                                onHandleColor="#eff4f9"
+                                handleDiameter={20}
+                                uncheckedIcon={false}
+                                checkedIcon={false}
+                                boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                                activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                                height={12}
+                                width={32}
+                                className="react-switch"
+                                id="material-switch"/>
+                        </label>
+                    </div>
                 </div>
             </div>
 

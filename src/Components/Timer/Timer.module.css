@@ -7,6 +7,11 @@
     grid-template-rows: min-content 1fr;
 }
 /**** ACTION BAR ****/
+.TopActionBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .ActionButton {
     border: none;
     display: flex;
@@ -21,6 +26,14 @@
     /* box-shadow: 0 2px 4px rgba(0,0,0,.12); */
     transition: all .2s;
     cursor: pointer;
+}
+.ActionBarToggle label {
+    display: flex;
+    align-items: center;
+}
+.ActionBarToggle span {
+    font-size: var(--font-size-tiny);
+    margin-right: 1rem;
 }
 /***** PRE START *****/
 .PreStartContainer {
