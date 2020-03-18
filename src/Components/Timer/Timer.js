@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Timer.module.css';
-import { useTimer } from 'use-timer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import NoSleep from 'nosleep.js';
@@ -8,13 +7,9 @@ import Switch from 'react-switch';
 
 const noSleep = new NoSleep();
 
-const Timer = ({ intervals, goBack, setBgColor }) => {
+const Timer = ({ intervals, goBack, setBgColor, time, start, reset, intervalSwitchTimes, currentIntervalIndex, finished }) => {
     
-    const [totalDuration, setTotalDuration] = React.useState();
-    const [currentIntervalIndex, setCurrentIntervalIndex] = React.useState(0);
-    const [intervalSwitchTimes, setIntervalSwitchTimes] = React.useState([]);
     const [started, setStarted] = React.useState(false);
-    const [finished, setFinished] = React.useState(false);
     const [noSleepActive, setNoSleepActive] = React.useState(false);
 
     React.useEffect(() => {
@@ -34,35 +29,9 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
 
     React.useEffect(() => {
         if(intervals) {
-            let total = 0;
-            let triggerTimes = [];
-            intervals.forEach(interval => {
-                total += interval.duration;
-                triggerTimes.push(total); 
-            });
-            setTotalDuration(total);
-            console.log("Array of trigger times", triggerTimes);
-            setIntervalSwitchTimes(triggerTimes);
-        }
-    }, [intervals]);
-
-    const { time, start, pause, reset } = useTimer({endTime: totalDuration});
-
-    React.useEffect(() => {
-        if(time === totalDuration) {
-            setFinished(true);
-        } else if((intervalSwitchTimes[currentIntervalIndex] - time) === 0) {
-            let newIndex = currentIntervalIndex;
-            newIndex += 1;
-            setCurrentIntervalIndex(newIndex);
-        }
-    }, [time, totalDuration, intervalSwitchTimes, currentIntervalIndex]);
-
-    React.useEffect(() => {
-        if(intervals) {
             setBgColor(intervals[currentIntervalIndex].intensity.color);
         }
-    }/*, [currentIntervalIndex] */ );
+    });
 
     function handleBackButtonClick() {
         setStarted(false);
@@ -123,7 +92,7 @@ const Timer = ({ intervals, goBack, setBgColor }) => {
                             <span>Keep Device Awake</span>
                             <Switch 
                                 onChange={toggleNoSleep} 
-                                checked={noSleepActive} 
+                                checked={noSleepActive}
                                 onColor="#6290C3"
                                 onHandleColor="#eff4f9"
                                 handleDiameter={20}

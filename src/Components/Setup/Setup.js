@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUndo, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import classes from './Setup.module.css';
 
-const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready, setBgColor }) => {
+const Setup = ({ intensityOptions, addInterval, undo, ready, setBgColor }) => {
     
     const [selectedIntensity, setSelectedIntensity] = React.useState();
     const [selectedDuration, setSelectedDuration] = React.useState(60);
@@ -16,7 +16,7 @@ const Setup = ({ intensityOptions, timeOptions, addInterval, undo, repeat, ready
         if(time < 60) {
             return time + ' seconds';
         } else if(time === 60) {
-            return (time/60) + ' minute';
+            return (time / 60) + ' minute';
         } else {
             return (time / 60) + ' minutes';
         }

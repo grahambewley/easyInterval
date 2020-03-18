@@ -25,6 +25,18 @@ const Timeline = ({ intervals }) => {
         }
     }
 
+    function getMinutesAndSeconds(seconds) {
+        let minutes = Math.floor(seconds / 60);
+        if(minutes < 10) {
+            minutes = '0' + minutes;
+        }
+        let remainderSeconds = (seconds % 60);
+        if(remainderSeconds < 10) {
+            remainderSeconds = '0' + remainderSeconds;
+        }
+        return minutes + ':' + remainderSeconds;
+    }
+
     return(
         <div className={classes.Container}>
             <div className={classes.TimelineDetails}>

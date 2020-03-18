@@ -1,10 +1,10 @@
 import React from 'react';
+import { useTimer } from 'use-timer';
 import TitleCard from './Components/TitleCard/TitleCard';
 import Setup from './Components/Setup/Setup';
 import Timer from './Components/Timer/Timer';
 import Timeline from './Components/Timeline/Timeline';
 import classes from './App.module.css';
-import NoSleep from 'nosleep.js';
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
@@ -39,8 +39,6 @@ const INIT_INTENSITY_OPTIONS = [
    // Alternative green: #55D6BE
 ];
 
-
-
 function App() {
   const [showTitleCard, setShowTitleCard] = React.useState(true);
   const [showSetup, setShowSetup] = React.useState(false);
@@ -51,11 +49,45 @@ function App() {
   const [intervals, setIntervals] = React.useState();
   const [repeatingIntervalArray, setRepeatingIntervalArray] = React.useState();
 
+  const [totalDuration, setTotalDuration] = React.useState();
+  const [intervalSwitchTimes, setIntervalSwitchTimes] = React.useState([]);
+  const [currentIntervalIndex, setCurrentIntervalIndex] = React.useState(0);
+  const [finished, setFinished] = React.useState(false);
+
+  const { time, start, pause, reset } = useTimer({endTime: totalDuration});
+
   React.useEffect(() => {
     if(!showTitleCard) {
       setShowSetup(true);
     }
   }, [showTitleCard]);
+
+  // This effect handles keeping track of the total exercise duration and the interval split times
+  React.useEffect(() => {
+    if(intervals) {
+      let total = 0;
+      let triggerTimes = [];
+      intervals.forEach(interval => {
+          total += interval.duration;
+          triggerTimes.push(total); 
+      });
+      setTotalDuration(total);
+      console.log("Array of trigger times", triggerTimes);
+      setIntervalSwitchTimes(triggerTimes);
+    }
+  }, [intervals]);
+
+  // This effect handles the switching of currentIntervalIndex, or setting the exercise to finished
+  React.useEffect(() => {
+    if(time === totalDuration) {
+      setFinished(true);
+    } else if((intervalSwitchTimes[currentIntervalIndex] - time) === 0) {
+      let newIndex = currentIntervalIndex;
+      newIndex += 1;
+      setCurrentIntervalIndex(newIndex);
+    }
+  }, [time, totalDuration, intervalSwitchTimes, currentIntervalIndex]);
+
 
   function handleAddInterval(newInterval) {
     // Clear out the repeatingIntervalArray in case the previous action was adding in some repeating intervals
@@ -142,6 +174,15 @@ function App() {
               intervals={intervals}
               goBack={() => setShowSetup(true)}
               setBgColor={setBgColor}
+              
+              time={time}
+              start={start}
+              reset={reset}
+
+              totalDuration={totalDuration}
+              intervalSwitchTimes={intervalSwitchTimes}
+              currentIntervalIndex={currentIntervalIndex}
+              finished={finished}
             />
           }
           <Timeline 

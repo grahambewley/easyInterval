@@ -61,6 +61,7 @@
     margin-bottom: 1rem;
 }
 .TimeSelectorIncrementButton {
+    cursor: pointer;
     height: 4rem;
     width: 4rem;
     display: flex;
@@ -91,6 +92,7 @@
     display: flex;
 }
 .TimeSelectorQuickOptionButton {
+    cursor: pointer;
     height: 4rem;
     display: flex;
     align-items: center;
