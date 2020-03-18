@@ -1,29 +1,16 @@
 import React from 'react';
 import classes from './Timeline.module.css';
 
-const Timeline = ({ intervals }) => {
+const Timeline = ({ showSetup, intervals, totalDuration, time }) => {
 
-    const [duration, setDuration] = React.useState(0);
+    const [totalTimeLeft, setTotalTimeLeft] = React.useState();
 
     React.useEffect(() => {
-        if(intervals) {
-            let total = 0;
-            intervals.forEach(interval => {
-                total += interval.duration; 
-            });
-            setDuration(total);
-        }
-    }, [intervals]);
+        console.log("total duration: ", totalDuration);
+        console.log("time: ", time);
 
-    function displayTotal() {
-        if(duration < 60) {
-            return duration + ' Seconds';
-        } else if(duration === 60) {
-            return (duration/60) + ' Minute';
-        } else {
-            return (duration/60) + ' Minutes';
-        }
-    }
+        setTotalTimeLeft(totalDuration - time);
+    }, [totalDuration, time]);
 
     function getMinutesAndSeconds(seconds) {
         let minutes = Math.floor(seconds / 60);
@@ -39,10 +26,13 @@ const Timeline = ({ intervals }) => {
 
     return(
         <div className={classes.Container}>
+            { intervals ? 
             <div className={classes.TimelineDetails}>
-                <span>Timeline</span>
-                <span>Total: {displayTotal()}</span>
+                { showSetup ? <span className={classes.TimelineDetailsLabel}>Total: </span>
+                : <span className={classes.TimelineDetailsLabel}>Time Left: </span> }
+                <span className={classes.TimelineDetailsTimer}>{getMinutesAndSeconds(totalTimeLeft)}</span>
             </div>
+            : null }
             <div className={classes.TimelineStrip}>
             { intervals ? 
             intervals.map(interval => {
@@ -50,7 +40,7 @@ const Timeline = ({ intervals }) => {
                 <div 
                     className={classes.IntervalSection}
                     style={{
-                        width: `${(interval.duration / duration) * 100 }%`,
+                        width: `${(interval.duration / totalDuration) * 100 }%`,
                         backgroundColor: interval.intensity.color
                     }}    
                 ></div>

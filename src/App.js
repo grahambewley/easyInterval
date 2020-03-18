@@ -71,6 +71,7 @@ function App() {
           total += interval.duration;
           triggerTimes.push(total); 
       });
+      console.log("Setting total duration to ", total);
       setTotalDuration(total);
       console.log("Array of trigger times", triggerTimes);
       setIntervalSwitchTimes(triggerTimes);
@@ -186,7 +187,10 @@ function App() {
             />
           }
           <Timeline 
-            intervals={intervals}/>
+            showSetup={showSetup}
+            intervals={intervals}
+            totalDuration={totalDuration}
+            time={time}/>
         </> }
       </div>
     </div>

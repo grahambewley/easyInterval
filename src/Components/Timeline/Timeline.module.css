@@ -3,13 +3,23 @@
 }
 .TimelineDetails {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
     padding: 0 10px;
     margin-bottom: 3px;
-    font-size: 1.2rem;
+}
+.TimelineDetailsLabel {
+    font-size: var(--font-size-tiny);
     text-transform: uppercase;
-    font-weight: bold;
     letter-spacing: 1px;
+    color: rgba(0,0,0,.5);
+}
+.TimelineDetailsTimer {
+    font-family: 'Source Code Pro', monospace;
+    font-size: var(--font-size-medium);
+    font-weight: 100;
+    line-height: 1;
     color: rgba(0,0,0,.7);
 }
 .TimelineStrip {
